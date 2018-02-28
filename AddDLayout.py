@@ -17,30 +17,38 @@ class AddDLayout(tkinter.Frame):
         label = tkinter.Label(self.parent, text="Přidat novou knihu", font=Font(size=40))
         label.grid(row=self.row, column=self.column, columnspan=self.column + 3)
 
+        label = tkinter.Label(self.parent, text="Kniha", font=Font(size=20))
+        label.grid(row=self.row + 1, column=self.column)
+
         confirm_newA_button = tkinter.Button(self.parent, text="Přidat knihu", command=lambda: self.add_anime(), width=15, height=2)
-        confirm_newA_button.grid(row=self.row + 1, column=self.column, columnspan=self.column + 2)
+        confirm_newA_button.grid(row=self.row + 1, column=self.column + 1, columnspan=self.column + 2)
 
         label = tkinter.Label(self.parent, text="Zadej název nové knihy", font=Font(size=10))
-        label.grid(row=self.row + 2, column=self.column, columnspan=self.column + 2)
+        label.grid(row=self.row + 2, column=self.column)
         self.name_anime = tkinter.Entry(self.parent)
-        self.name_anime.grid(row=self.row + 3, column=self.column, columnspan=self.column + 2)
+        self.name_anime.grid(row=self.row + 3, column=self.column)
 
 
         genres1 = ["poezie", "próza"]
         genres2 = ["lyrika", "epika", "drama"]
+
+        self.book_genreVar = tkinter.StringVar()
+        self.book_genreVar2 = tkinter.StringVar()
+
         label = tkinter.Label(self.parent, text="Zadej žánry knihy")
         label.grid(row=self.row + 5, column=self.column)
-        self.book_genre = ttk.Combobox(self.parent, value=genres1, state="readonly")
-        self.book_genre.grid(row=self.row + 5, column=self.column + 1)
-        self.book_genre2 = ttk.Combobox(self.parent, value=genres2, state="readonly")
-        self.book_genre2.grid(row=self.row + 5, column=self.column + 2)
+        self.book_genreCombobox = ttk.Combobox(self.parent,  textvariable=self.book_genreVar, value=genres1, state="readonly")
+        self.book_genreCombobox.grid(row=self.row + 5, column=self.column + 1)
+        self.book_genre2Combobox = ttk.Combobox(self.parent, textvariable=self.book_genreVar2, value=genres2, state="readonly")
+        self.book_genre2Combobox.grid(row=self.row + 5, column=self.column + 2)
 
 
         detailGenres = ["Bajka", "Báje(Mýtus)", "Legenda", "Pověst", "Pohádka", "Povídka", "Novela", "Román", "Balada",
                         "Romance", "Píseň", "Elegie", "Óda", "Epigraf", "Epitaf", "Tragédie", "Komedie", "Činohra"]
+        self.detailGenresVar = tkinter.StringVar()
         label = tkinter.Label(self.parent, text="Zadej specifický literární žánr")
         label.grid(row=self.row + 6, column=self.column)
-        self.detailGenresCombobox = ttk.Combobox(self.parent, value=detailGenres, state="readonly")
+        self.detailGenresCombobox = ttk.Combobox(self.parent, textvariable=self.detailGenresVar, value=detailGenres, state="readonly")
         self.detailGenresCombobox.grid(row=self.row + 6, column=self.column + 1)
 
         label = tkinter.Label(self.parent, text="Zadej členění textu:")
@@ -49,21 +57,24 @@ class AddDLayout(tkinter.Frame):
         self.textDiversity.grid(row=self.row + 7, column=self.column + 1)
 
         tellerForm = ["ich", "er"]
+        self.tellerFormVar = tkinter.StringVar()
         label = tkinter.Label(self.parent, text="Zadej formu vypravěče")
         label.grid(row=self.row + 8, column=self.column)
-        self.tellerFormCombobox = ttk.Combobox(self.parent, value=tellerForm, state="readonly")
+        self.tellerFormCombobox = ttk.Combobox(self.parent,  textvariable=self.tellerFormVar, value=tellerForm, state="readonly")
         self.tellerFormCombobox.grid(row=self.row + 8, column=self.column + 1)
 
         tellerType = ["subjektivní", "objetivní", "oko kamery"]
+        self.tellerTypeVar = tkinter.StringVar()
         label = tkinter.Label(self.parent, text="Zadej typ vypravěče")
         label.grid(row=self.row + 9, column=self.column)
-        self.tellerTypeCombobox = ttk.Combobox(self.parent, value=tellerType, state="readonly")
+        self.tellerTypeCombobox = ttk.Combobox(self.parent, textvariable=self.tellerTypeVar, value=tellerType, state="readonly")
         self.tellerTypeCombobox.grid(row=self.row + 9, column=self.column + 1)
 
         speakType = ["přímá", "nepřímá", "polopřímá", "nevlastní přímá", "monolog", "dialog"]
+        self.speakTypeVar = tkinter.StringVar()
         label = tkinter.Label(self.parent, text="Určete typ řeči hlavních postav")
         label.grid(row=self.row + 10, column=self.column)
-        self.speakTypeCombobox = ttk.Combobox(self.parent, value=speakType, state="readonly")
+        self.speakTypeCombobox = ttk.Combobox(self.parent, textvariable=self.speakTypeVar, value=speakType, state="readonly")
         self.speakTypeCombobox.grid(row=self.row + 10, column=self.column + 1)
 
         label = tkinter.Label(self.parent, text="Obsah knihy", font=Font(size=20))
@@ -75,55 +86,69 @@ class AddDLayout(tkinter.Frame):
         self.bookPlot.grid(row=self.row + 12, column=self.column + 1)
 
         label = tkinter.Label(self.parent, text="Jak kniha/příběh začíná?")
-        label.grid(row=self.row + 12, column=self.column)
+        label.grid(row=self.row + 13, column=self.column)
         self.bookStart = tkinter.Entry(self.parent)
-        self.bookStart.grid(row=self.row + 12, column=self.column + 1)
+        self.bookStart.grid(row=self.row + 13, column=self.column + 1)
 
         label = tkinter.Label(self.parent, text="Jak kniha/příběh končí?")
-        label.grid(row=self.row + 12, column=self.column)
+        label.grid(row=self.row + 14, column=self.column)
         self.bookEnd = tkinter.Entry(self.parent)
-        self.bookEnd.grid(row=self.row + 12, column=self.column + 1)
+        self.bookEnd.grid(row=self.row + 14, column=self.column + 1)
 
-        label = tkinter.Label(self.parent, text="Určete čas z celé knihy?")
-        label.grid(row=self.row + 12, column=self.column)
-        self.bookPlace = tkinter.Entry(self.parent)
-        self.bookPlace.grid(row=self.row + 12, column=self.column + 1)
+        label = tkinter.Label(self.parent, text="Určete čas v knize")
+        label.grid(row=self.row + 15, column=self.column)
+        self.bookTime = tkinter.Entry(self.parent)
+        self.bookTime.grid(row=self.row + 15, column=self.column + 1)
 
         label = tkinter.Label(self.parent, text="Určete místo odehrání příběhu z celé knihy?")
-        label.grid(row=self.row + 12, column=self.column)
+        label.grid(row=self.row + 16, column=self.column)
         self.bookPlace = tkinter.Entry(self.parent)
-        self.bookPlace.grid(row=self.row + 12, column=self.column + 1)
+        self.bookPlace.grid(row=self.row + 16, column=self.column + 1)
 
         label = tkinter.Label(self.parent, text="Charakterizujte hlavní postavy")
-        label.grid(row=self.row + 12, column=self.column)
+        label.grid(row=self.row + 17, column=self.column)
         self.bookFigures = tkinter.Entry(self.parent)
-        self.bookFigures.grid(row=self.row + 12, column=self.column + 1)
+        self.bookFigures.grid(row=self.row + 17, column=self.column + 1)
 
         label = tkinter.Label(self.parent, text="Autor", font=Font(size=20))
-        label.grid(row=self.row + 11, column=self.column)
-
-        label = tkinter.Label(self.parent, text="Zařaďte dílo do doby ve které vzniklo")
-        label.grid(row=self.row + 12, column=self.column)
-        self.bookAge = tkinter.Entry(self.parent)
-        self.bookAge.grid(row=self.row + 12, column=self.column + 1)
+        label.grid(row=self.row + 18, column=self.column)
 
         label = tkinter.Label(self.parent, text="Jmenujte autora")
-        label.grid(row=self.row + 12, column=self.column)
+        label.grid(row=self.row + 19, column=self.column)
         self.bookAutor = tkinter.Entry(self.parent)
-        self.bookAutor.grid(row=self.row + 12, column=self.column + 1)
+        self.bookAutor.grid(row=self.row + 19, column=self.column + 1)
 
-        label = tkinter.Label(self.parent, text="Zařaďte dílo do lit. směru")
-        label.grid(row=self.row + 12, column=self.column)
-        self.bookAutor = tkinter.Entry(self.parent)
-        self.bookAutor.grid(row=self.row + 12, column=self.column + 1)
+        label = tkinter.Label(self.parent, text="Zařaďte dílo do doby ve které vzniklo")
+        label.grid(row=self.row + 20, column=self.column)
+        self.bookAge = tkinter.Entry(self.parent)
+        self.bookAge.grid(row=self.row + 20, column=self.column + 1)
 
-        label = tkinter.Label(self.parent, text="Zařaďte dílo do lit. směru")
-        label.grid(row=self.row + 12, column=self.column)
-    self.bookAutor = tkinter.Entry(self.parent)
-    self.bookAutor.grid(row=self.row + 12, column=self.column + 1)
+        label = tkinter.Label(self.parent, text="Zařaďte autora do lit. směru")
+        label.grid(row=self.row + 21, column=self.column)
+        self.bookAutorWrite = tkinter.Entry(self.parent)
+        self.bookAutorWrite.grid(row=self.row + 21, column=self.column + 1)
+
+        label = tkinter.Label(self.parent, text="Jmenujte další představitele uvedeného směru")
+        label.grid(row=self.row + 22, column=self.column)
+        self.bookOtherAutor = tkinter.Entry(self.parent)
+        self.bookOtherAutor.grid(row=self.row + 22, column=self.column + 1)
+
+        label = tkinter.Label(self.parent, text="Jmenujte další díla tohoto autora")
+        label.grid(row=self.row + 23, column=self.column)
+        self.bookOtherAutor = tkinter.Entry(self.parent)
+        self.bookOtherAutor.grid(row=self.row + 23, column=self.column + 1)
+
+        label = tkinter.Label(self.parent, text="Jmenujte podobné dílo jiného autora")
+        label.grid(row=self.row + 24, column=self.column)
+        self.otherBook = tkinter.Entry(self.parent)
+        self.otherBook.grid(row=self.row + 24, column=self.column + 1)
+
 
     def add_anime(self):
-        data = []
+        data=[self.book_genreVar.get()+", "+ self.book_genreVar2.get(), self.detailGenresVar.get(), self.tellerFormVar.get(),
+              self.tellerTypeVar.get(), self.speakTypeVar.get(), self.bookPlot.get(), self.bookStart.get(),
+              self.bookEnd.get(), self.bookTime.get(), self.bookPlace.get(), self.bookFigures.get(), self.bookAutor.get(),
+              self.bookAge.get(), self.bookAutorWrite.get(), self.bookOtherAutor.get(), self.otherBook.get()]
 
         if self.name_anime.get() != "":
             self.dManager.add_new_anime_to_db(self.name_anime.get())

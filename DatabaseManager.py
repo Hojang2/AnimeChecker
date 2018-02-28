@@ -1,5 +1,11 @@
 import os
 class DatabaseManager:
+    def __init__(self):
+        self.info_list = ["Žánr knihy:", "Specifický literární žánr:", "Členění textu:", "Forma vypravěče:",
+                          "Typ vypravěče:", "Typ řečí hlavních postav:", "Zápletka díla:", "Začátek:", "Konec",
+                          "Čas v knize", "Místo příběhu", "Hlavní postavy", "Autor", "Doba vzniku díla", "Literární směr",
+                          "Další představitelé", "Další díla", "Podobné dílo"]
+
     def add_new_anime_to_db(self, anime=""):
         refractore_names = self.return_database()
         name_database = open("MainDiaryDetails.txt", mode="w")
@@ -20,15 +26,17 @@ class DatabaseManager:
         name_database.close()
 
     def write_to_file(self, name="", data=[]):
-        info_list = ["Pocet epizod:", "Poslední viděná epizoda:", "Žánr:", "Kvalita:", "Poznámka:"]
         anime_data = open("DiaryDatabase/" + name + ".txt", mode="w")
         for i, data in enumerate(data):
-            anime_data.write(info_list[i]+" "+str(data)+"\n")
+            anime_data.write(self.info_list[i]+" "+str(data)+"\n")
         anime_data.close()
 
     def read_from_file(self, file_name):
         anime_data=open("DiaryDatabase/" + file_name + ".txt", mode="r")
         return anime_data.read().splitlines()
+
+    def get_info(self):
+        return self.info_list
 
     def return_database(self):
         name_database = open("MainDiaryDetails.txt", mode="r")
