@@ -2,7 +2,7 @@ import tkinter
 from tkinter.font import Font
 from tkinter import ttk
 from DatabaseManager import DatabaseManager
-class SelectALayout(tkinter.Frame):
+class SelectDLayout(tkinter.Frame):
     def __init__(self, tkinter, row=0, column=0):
         super().__init__(tkinter)
         self.row = row
@@ -16,7 +16,7 @@ class SelectALayout(tkinter.Frame):
     def create_layout(self):
         self.animeVar = tkinter.StringVar()
 
-        label = tkinter.Label(self.parent, text="Vybrané anime", font=Font(size=40))
+        label = tkinter.Label(self.parent, text="Vybraná kniha", font=Font(size=40))
         label.grid(row=self.row, column=self.column, columnspan=self.column + 3)
 
 
