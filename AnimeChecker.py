@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from UpdateALayout import UpdateALayout
 from AddAnimeLayout import AddAnimeLayout
 from SelectALayout import SelectALayout
 from DatabaseManager import DatabaseManager
@@ -20,12 +19,10 @@ class Checker(tkinter.Frame):
         update_button.grid(row=0, column=0, columnspan=6)
 
         self.addAnimeL = AddAnimeLayout(self.parent, row=1)
-        self.updateL = UpdateALayout(self.parent,row=1, column=5)
-        self.selectL = SelectALayout(self.parent,row=10)
+        self.selectL = SelectALayout(self.parent, row=13)
 
     def update_all(self):
         self.addAnimeL.create_layout()
-        self.updateL.create_layout()
         self.selectL.create_layout()
    #def validate_numbers(self, action, index,value, ):
    #kvalita
