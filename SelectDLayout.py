@@ -46,18 +46,18 @@ class SelectDLayout(tkinter.Frame):
         bookDetail = tkinter.Label(self.parent, text="Obsah knihy", font=Font(size=20))
         bookDetail.grid(row=self.row + 10, column=self.column)
 
-        for i in range(5):
+        for i in range(6):
             self.obsahKnihy.append(tkinter.Label(self.parent, text=self.description[i + 6]))
-        for i in range(5):
+        for i in range(6):
             self.obsahKnihy[i].grid(row=self.row + i + 12, column=self.column)
 
         bookAutor = tkinter.Label(self.parent, text="Autor", font=Font(size=20))
-        bookAutor.grid(row=self.row + 16, column=self.column)
+        bookAutor.grid(row=self.row + 18, column=self.column)
 
-        for i in range(6):
-            self.autor.append(tkinter.Label(self.parent, text=self.description[i + 11]))
-        for i in range(6):
-            self.autor[i].grid(row=self.row + i + 18, column=self.column)
+        for i in range(5):
+            self.autor.append(tkinter.Label(self.parent, text=self.description[i + 12]))
+        for i in range(5):
+            self.autor[i].grid(row=self.row + i + 19, column=self.column)
 
     def change_description(self, event):
         self.name = self.animeVar.get()

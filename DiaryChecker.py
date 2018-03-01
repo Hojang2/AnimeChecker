@@ -27,13 +27,15 @@ class Checker(tkinter.Frame):
                                        command=lambda: self.open_files())
         update_button.grid(row=1, column=1)
 
-        load_file_button = tkinter.Button(self.parent, text="Načíst soubor", anchor="center",
-                                       command=lambda: self.reload_book())
-        load_file_button.grid(row=1, column=2)
+        label = tkinter.Label(self.parent, text="Zadej název souboru, který chceš načíst")
+        label.grid(row=1, column=2)
+
+        self.load_file_entry = tkinter.Entry(self.parent)
+        self.load_file_entry.grid(row=1, column=3)
 
         load_file_button = tkinter.Button(self.parent, text="Načíst soubor", anchor="center",
-                                          command=lambda: self.reload_book())
-        load_file_button.grid(row=1, column=2)
+                                       command=lambda: self.load_file())
+        load_file_button.grid(row=1, column=4)
 
         self.addDL = AddDLayout(self.parent, row=2)
         self.selectDL = SelectDLayout(self.parent, row=2, column=3)
@@ -45,6 +47,10 @@ class Checker(tkinter.Frame):
 
     def open_files(self):
         subprocess.Popen(r'explorer /select, "C:\Users\balda\Desktop\MyProjects\ReaderDiary\DiaryDatabase\."')
+
+    def load_file(self):
+        self.dManager.load_book(self.load_file_entry.get())
+        self.load_file_entry.delete(0, 'end')
 
 root = tkinter.Tk()
 app = Checker(root)

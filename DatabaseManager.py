@@ -3,15 +3,16 @@ class DatabaseManager:
     def __init__(self):
         self.info_list = ["Žánr knihy:", "Specifický literární žánr:", "Členění textu:", "Forma vypravěče:",
                           "Typ vypravěče:", "Typ řečí hlavních postav:", "Zápletka díla:", "Začátek:", "Konec:",
-                          "Čas v knize:", "Místo příběhu:", "Hlavní postavy:", "Autor:", "Doba vzniku díla:", "Literární směr:",
+                          "Čas v knize:", "Místo příběhu:", "Hlavní postavy:","Autor:", "Doba vzniku díla:", "Literární směr:",
                           "Další představitelé:", "Další díla:", "Podobné dílo:"]
 
-    def add_new_anime_to_db(self, book=""):
+    def add_new_anime_to_db(self, book="", createFile=True):
         refractore_names = self.return_name_database()
         name_database = open("MainDiaryDetails.txt", mode="w")
         if(self.check_database(refractore_names, book) != True):
             refractore_names.append(book)
-            self.write_to_file(book)
+            if(createFile):
+                self.write_to_file(book)
         for str in refractore_names:
             name_database.write(str+"\n")
         name_database.close()
@@ -72,4 +73,11 @@ class DatabaseManager:
             if a == symbol:
                     return True
         return False
+
+    def load_book(self, name=""):
+        try:
+            name_database = open("DiaryDatabase/" + name + ".txt", mode="r")
+            self.add_new_anime_to_db(name, createFile=False)
+        except:
+            print ("Soubor neexistuje")
 
