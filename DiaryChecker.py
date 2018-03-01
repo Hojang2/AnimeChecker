@@ -11,7 +11,7 @@ class Checker(tkinter.Frame):
         super().__init__(parent)
         self.parent = parent
         self.dManager = DatabaseManager()
-        self.parent.title("Moje anime")
+        self.parent.title("Můj čtenářský deník")
         self.parent.minsize(600, 1020)
         self.parent.resizable(True, True)
         self.create_widgets()
@@ -20,23 +20,31 @@ class Checker(tkinter.Frame):
         label = tkinter.Label(self.parent, text="Čtenářský deník", font=Font(size=50))
         label.grid(row=0, column=0, columnspan=2)
 
-        update_button = tkinter.Button(self.parent, text="Načíst změny", anchor="center", command=lambda: self.update_all())
+        update_button = tkinter.Button(self.parent, text="Načíst změny", anchor="center", command=lambda: self.reload_book())
         update_button.grid(row=1, column=0)
 
         update_button = tkinter.Button(self.parent, text="Otevřít soubory", anchor="center",
                                        command=lambda: self.open_files())
         update_button.grid(row=1, column=1)
 
-        self.addDL = AddDLayout(self.parent, row=2)
-        self.selectDL = SelectDLayout(self.parent, row=2,column=3)
+        load_file_button = tkinter.Button(self.parent, text="Načíst soubor", anchor="center",
+                                       command=lambda: self.reload_book())
+        load_file_button.grid(row=1, column=2)
 
-    def update_all(self):
+        load_file_button = tkinter.Button(self.parent, text="Načíst soubor", anchor="center",
+                                          command=lambda: self.reload_book())
+        load_file_button.grid(row=1, column=2)
+
+        self.addDL = AddDLayout(self.parent, row=2)
+        self.selectDL = SelectDLayout(self.parent, row=2, column=3)
+
+    def reload_book(self):
         self.addDL.create_layout()
+        self.selectDL.update_all()
         self.selectDL.create_layout()
 
     def open_files(self):
-        subprocess.Popen(r'explorer /select, "C:\Users\balda\Desktop\MyProjects\AnimeChecker\DiaryDatabase\."')
-
+        subprocess.Popen(r'explorer /select, "C:\Users\balda\Desktop\MyProjects\ReaderDiary\DiaryDatabase\."')
 
 root = tkinter.Tk()
 app = Checker(root)

@@ -145,7 +145,7 @@ class AddDLayout(tkinter.Frame):
 
 
     def add_anime(self):
-        data=[self.book_genreVar.get()+", "+ self.book_genreVar2.get(), self.detailGenresVar.get(), self.tellerFormVar.get(),
+        data=[self.book_genreVar.get()+", "+ self.book_genreVar2.get(), self.detailGenresVar.get(), self.textDiversity.get(), self.tellerFormVar.get(),
               self.tellerTypeVar.get(), self.speakTypeVar.get(), self.bookPlot.get(), self.bookStart.get(),
               self.bookEnd.get(), self.bookTime.get(), self.bookPlace.get(), self.bookFigures.get(), self.bookAutor.get(),
               self.bookAge.get(), self.bookAutorWrite.get(), self.bookOtherAutor.get(), self.otherBook.get()]
