@@ -71,10 +71,10 @@ class SelectDLayout(tkinter.Frame):
         self.description = self.databaseM.get_info()
         for i in range(6):
             self.zaklaniZnalost[i].config(text=self.description[i])
-        for i in range(5):
-            self.obsahKnihy[i].config(text=self.description[i + 6])
         for i in range(6):
-            self.autor[i].config(text=self.description[i + 11])
+            self.obsahKnihy[i].config(text=self.description[i + 6])
+        for i in range(5):
+            self.autor[i].config(text=self.description[i + 12])
         self.nameLabel.config(text="")
 
     def delete_all_anime(self):
