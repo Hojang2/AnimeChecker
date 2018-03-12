@@ -38,26 +38,27 @@ class SelectDLayout(tkinter.Frame):
         self.show_anime.bind('<<ComboboxSelected>>', self.change_description)
 
         for i in range(6):
-            print(i)
             self.zaklaniZnalost.append(tkinter.Label(self.parent, text=self.description[i]))
         for i in range(6):
             self.zaklaniZnalost[i].grid(row=self.row + i + 3, column=self.column)
 
-        bookDetail = tkinter.Label(self.parent, text="Obsah knihy", font=Font(size=20))
-        bookDetail.grid(row=self.row + 10, column=self.column)
-
-        for i in range(6):
-            self.obsahKnihy.append(tkinter.Label(self.parent, text=self.description[i + 6]))
-        for i in range(6):
-            self.obsahKnihy[i].grid(row=self.row + i + 12, column=self.column)
-
         bookAutor = tkinter.Label(self.parent, text="Autor", font=Font(size=20))
-        bookAutor.grid(row=self.row + 18, column=self.column)
+        bookAutor.grid(row=self.row + 10, column=self.column)
 
-        for i in range(5):
-            self.autor.append(tkinter.Label(self.parent, text=self.description[i + 12]))
-        for i in range(5):
-            self.autor[i].grid(row=self.row + i + 19, column=self.column)
+        for i in range(6):
+                self.autor.append(tkinter.Label(self.parent, text=self.description[i + 6]))
+        for i in range(6):
+                self.autor[i].grid(row=self.row + i + 12, column=self.column)
+
+        bookDetail = tkinter.Label(self.parent, text="Obsah knihy", font=Font(size=20))
+        bookDetail.grid(row=self.row + 18, column=self.column)
+
+        for i in range(6):
+            self.obsahKnihy.append(tkinter.Label(self.parent, text=self.description[i + 12]))
+        for i in range(6):
+            self.obsahKnihy[i].grid(row=self.row + i + 19, column=self.column)
+
+
 
     def change_description(self, event):
         self.name = self.animeVar.get()
@@ -72,10 +73,10 @@ class SelectDLayout(tkinter.Frame):
         for i in range(6):
             self.zaklaniZnalost[i].config(text=self.description[i])
         for i in range(6):
-            self.obsahKnihy[i].config(text=self.description[i + 6])
-        for i in range(5):
-            self.autor[i].config(text=self.description[i + 12])
+            self.autor[i].config(text=self.description[i + 6])
         self.nameLabel.config(text="")
+        for i in range(6):
+            self.obsahKnihy[i].config(text=self.description[i + 12])
 
     def delete_all_anime(self):
         self.databaseM.delete_datebase()

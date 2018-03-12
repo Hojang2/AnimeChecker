@@ -2,9 +2,9 @@ import os
 class DatabaseManager:
     def __init__(self):
         self.info_list = ["Žánr knihy:", "Specifický literární žánr:", "Členění textu:", "Forma vypravěče:",
-                          "Typ vypravěče:", "Typ řečí hlavních postav:", "Zápletka díla:", "Začátek:", "Konec:",
-                          "Čas v knize:", "Místo příběhu:", "Hlavní postavy:","Autor:", "Doba vzniku díla:", "Literární směr:",
-                          "Další představitelé:", "Další díla:", "Podobné dílo:"]
+                          "Typ vypravěče:", "Typ řečí hlavních postav:", "Autor:", "Doba vzniku díla:", "Literární směr:",
+                          "Další představitelé:", "Další díla:", "Podobné dílo:", "Čas v knize:", "Zápletka díla:", "Začátek:", "Konec:",
+                           "Místo příběhu:", "Hlavní postavy:",]
 
     def add_new_anime_to_db(self, book="", createFile=True):
         refractore_names = self.return_name_database()
@@ -57,10 +57,17 @@ class DatabaseManager:
 
     def return_name_database(self):
         name_database = open("MainDiaryDetails.txt", mode="r")
-        refractore_names = name_database.read().splitlines()
-        print(refractore_names)
-        name_database.close()
-        return refractore_names
+        if name_database != None:
+            refractore_names = name_database.read().splitlines()
+            print(refractore_names)
+            name_database.close()
+            return refractore_names
+        else:
+            name_database.close()
+            name_database2 = open("MainDiaryDetails.txt", mode="w")
+            name_database2.close()
+            return []
+
 
     def check_database(self, database, name=""):
         for anime in database:

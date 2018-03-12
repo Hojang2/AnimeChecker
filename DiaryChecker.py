@@ -38,7 +38,7 @@ class Checker(tkinter.Frame):
         load_file_button.grid(row=1, column=4)
 
         self.addDL = AddDLayout(self.parent, row=2)
-        self.selectDL = SelectDLayout(self.parent, row=2, column=3)
+        self.selectDL = SelectDLayout(self.parent, row=3, column=6)
 
     def reload_book(self):
         self.addDL.create_layout()
