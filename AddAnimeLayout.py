@@ -2,7 +2,9 @@ import tkinter
 from tkinter.font import Font
 from DatabaseManager import DatabaseManager
 
+
 class AddAnimeLayout(tkinter.Frame):
+
     def __init__(self, tkinter,row=0, column=0):
         super().__init__(tkinter)
         self.row = row

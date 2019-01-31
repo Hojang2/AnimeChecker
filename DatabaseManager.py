@@ -1,6 +1,11 @@
 import os
+
+
 class DatabaseManager:
+
+
     def add_new_anime_to_db(self, anime=""):
+
         refractore_names = self.return_database()
         name_database = open("MainAnime.txt", mode="w")
         if(self.check_database(refractore_names, anime) != True):

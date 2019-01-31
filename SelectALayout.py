@@ -2,7 +2,10 @@ import tkinter
 from tkinter.font import Font
 from tkinter import ttk
 from DatabaseManager import DatabaseManager
+
+
 class SelectALayout(tkinter.Frame):
+
     def __init__(self, tkinter, row=0, column=0):
         super().__init__(tkinter)
         self.row = row
@@ -19,13 +22,13 @@ class SelectALayout(tkinter.Frame):
         label = tkinter.Label(self.parent, text="Vybrané anime", font=Font(size=40))
         label.grid(row=self.row, column=self.column, columnspan=self.column + 3)
 
-
         delete_anime_button = tkinter.Button(self.parent, text="Smazat všechny anime", anchor="center",
                                              command=lambda: self.delete_anime())
         delete_anime_button.grid(row=self.row + 1, column=self.column)
 
-
-        self.show_anime = ttk.Combobox(self.parent, textvariable=self.animeVar, value=self.databaseM.return_database(), state="readonly")
+        self.show_anime = ttk.Combobox(self.parent, textvariable=self.animeVar,
+                                       value=self.databaseM.return_database(),
+                                       state="readonly")
         self.show_anime.grid(row=self.row + 1, column=self.column + 1)
         self.show_anime.bind('<<ComboboxSelected>>', self.change_description)
 
@@ -54,9 +57,6 @@ class SelectALayout(tkinter.Frame):
         if event:
             print(event.widget.get())
 
-
     def delete_anime(self):
         self.databaseM.delete_datebase()
         self.create_layout()
-
-
