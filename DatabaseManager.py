@@ -1,55 +1,41 @@
-import os
+from json import dump, load
+from os import remove
 
 
 class DatabaseManager:
 
+    def __init__(self, path: str):
+        self.__content = {}
+        self.__template = ["Name", "Number of episodes",
+                           "Last episode", "Kind", "Quality", "Note"]
+        self.__path = path
 
-    def add_new_anime_to_db(self, anime=""):
+    def add(self, data: list) -> None:
+        temp = {}
+        for i in range(len(self.__template)):
+            if len(self.__template) == len(data):
+                temp[self.__template[i]] = ""
+            else:
+                temp[self.__template[i]] = data[i]
 
-        refractore_names = self.return_database()
-        name_database = open("MainAnime.txt", mode="w")
-        if(self.check_database(refractore_names, anime) != True):
-            refractore_names.append(anime)
-            self.write_to_file(anime)
-        for str in refractore_names:
-            name_database.write(str+"\n")
-        name_database.close()
+        self.__content[len(self.__content)] = temp
 
-    def delete_datebase(self):
-        name_database = open("MainAnime.txt", mode="w")
-        refractore_names=self.return_database()
-        for i, name in enumerate(refractore_names):
-            os.remove("AnimeDatabase/" + name + ".txt")
-            name_database.seek(i)
-            name_database.truncate()
-        name_database.close()
+    def delete_data(self) -> None:
+        self.__content = {}
+        self.remove_database()
 
-    def write_to_file(self, name="", data=[]):
-        info_list = ["Pocet epizod:", "Poslední viděná epizoda:", "Žánr:", "Kvalita:", "Poznámka:"]
-        anime_data = open("AnimeDatabase/" + name + ".txt", mode="w")
-        for i, data in enumerate(data):
-            anime_data.write(info_list[i]+" "+str(data)+"\n")
-        anime_data.close()
+    def save(self) -> None:
+        try:
+            dump(self.__path, self.__content)
+        except FileNotFoundError as e:
+            print(e)
 
-    def read_from_file(self, file_name):
-        anime_data=open("AnimeDatabase/" + file_name + ".txt", mode="r")
-        return anime_data.read().splitlines()
+    def load(self) -> None:
+        self.__content = load(self.__path, strict=False)
 
-    def return_database(self):
-        name_database = open("MainAnime.txt", mode="r")
-        refractore_names = name_database.read().splitlines()
-        name_database.close()
-        return refractore_names
+    def remove_database(self) -> None:
+        remove(self.__path)
 
-    def check_database(self, database, name=""):
-        for anime in database:
-            if anime == name:
-                return True
-        return False
-
-    def check_symbol(self, string="", symbol=""):
-        for a in string:
-            if a == symbol:
-                    return True
-        return False
-
+    def reload(self) -> None:
+        self.save()
+        self.load()
